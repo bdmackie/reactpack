@@ -1,0 +1,12 @@
+{
+  "name": "reactpack",
+  "version": "1.0.0",
+  "description": "Base for Webpack+react",
+  "main": "index.js",
+  "license": "copyright",
+  "devDependencies": {
+    "lodash": "^4.17.4",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
