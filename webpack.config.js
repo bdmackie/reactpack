@@ -21,6 +21,13 @@ var config = {
           }
         }]
       },
+      { 
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
       {
         test: /\.(sass|scss)$/, //Check for sass or scss file names
         use: [
