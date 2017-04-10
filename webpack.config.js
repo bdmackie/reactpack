@@ -8,7 +8,7 @@ var config = {
   },
   output: {
     path: __dirname + '/dist', // `dist` is the destination
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     publicPath: '/assets',
   },
   module: {

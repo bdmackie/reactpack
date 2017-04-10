@@ -1,6 +1,4 @@
-var _ = require('lodash');
+import sum from './sum';
 
-var array = [1];
-var other = _.concat(array, 2, [3], [[4]]);
-
-console.log(other); //[1, 2, 3, [4]]
+const x = sum(2,3);
+console.log(x);
