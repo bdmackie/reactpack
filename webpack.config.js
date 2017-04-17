@@ -1,5 +1,5 @@
 'use strict';
-var webpack = require('webpack');
+const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var config = {
@@ -10,7 +10,7 @@ var config = {
   output: {
     path: __dirname + '/dist', // `dist` is the destination
     filename: 'bundle.js',
-    publicPath: '/assets',
+    publicPath: 'assets/',
   },
   module: {
     rules: [{
@@ -18,20 +18,14 @@ var config = {
         use: [{
           loader: 'babel-loader',
           options: {
-            presets: ['es2015']
+            plugins: ['transform-es2015-spread'],
+            presets: ['es2015', 'react']
           }
         }]
       },
-      { 
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
       {
           test: /\.less$/,
-          use: ExtractTextPlugin.extract({
+          use: ExtractTextPlugin.extract({ // See 'plugins' below.
             fallback: 'style-loader',
             use: ['css-loader', 'less-loader']
           })
@@ -39,11 +33,24 @@ var config = {
       {
         test: /\.json$/,
         loader: "json-loader" //JSON loader
+      },
+      { 
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 40000 }
+          },
+          { 
+            loader: 'image-webpack-loader',
+            options: { bypassOnDebug: false }
+          }
+        ]
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
+    new ExtractTextPlugin({ // Use a plugin to extract to a separate css file.
       filename: 'style.css',
       disable: false,
       allChunks: true
